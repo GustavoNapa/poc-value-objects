@@ -3,19 +3,20 @@ namespace App\ValueObjects;
 
 use App\Http\Services\Helpers;
 use Exception;
+use InvalidArgumentException;
 
 class Cpf {
-
-    private string $cpf;
-
-    public function __construct(string $value)
+    public function __construct(private readonly string $cpf)
     {
-        // Verify if is valid
-        if(!Helpers::verifyCPF($value)){
-            throw new Exception("CPF inválido", 401);
+    }
+
+    public static function fromString(string $cpf): Cpf
+    {
+        if (!Helpers::verifyCPF($cpf)) {
+            throw new InvalidArgumentException('CPF inválido');
         }
 
-        $this->cpf = Helpers::removeMaskCPFCNPJ($value);
+        return new self($cpf);
     }
 
     // Get CPF simple

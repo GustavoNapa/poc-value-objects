@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\Cpf;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -40,5 +41,6 @@ class Person extends Model
      */
     protected $casts = [
         'password' => 'hashed',
+        'documentNumber' => Cpf::class
     ];
 }
