@@ -26,7 +26,7 @@ class PersonTest extends TestCase
 
     public function test_create_people_return_a_suceful_response_when_send_correct_fieds(): void {
         $response = $this->post('/api/person', [
-            'documentNumber' => fake()->numberBetween(10000000000, 99999999999),
+            'documentNumber' => fake()->cpf(),
             'name' => fake('pt-BR')->name(),
             'motherName' => fake('pt-BR')->name('female'),
             'birthDate' => fake('pt-BR')->date(),
